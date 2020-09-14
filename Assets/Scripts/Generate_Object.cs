@@ -11,6 +11,7 @@ namespace Assets.Scripts
 {
     public class Generate_Object : MonoBehaviour
     {
+        #region Parameters
         /// <summary>
         /// Для генерации объема здоровья метеорита
         /// </summary>
@@ -32,6 +33,7 @@ namespace Assets.Scripts
         /// Событие вызывающееся, когда создан новый экземпляр метеорита
         /// </summary>
         public Alive CreateNewMeteor;
+        #endregion
 
         public void Start()
         {
@@ -45,8 +47,7 @@ namespace Assets.Scripts
         /// <param name="parent">Объект требуемого родителя</param>
         public void CreateMeteor(Vector3 position, GameObject parent)
         {
-            GameObject newMeteor = Instantiate(generateObject,parent.transform);
-            newMeteor.transform.localPosition = position;
+            GameObject newMeteor = Instantiate(generateObject,position,Quaternion.identity,parent.transform);
             newMeteor.GetComponentInChildren<Slider>().value = newMeteor.GetComponentInChildren<Slider>().maxValue = r.Next(20, 100);
             CreateNewMeteor?.Invoke(newMeteor);
         }

@@ -114,7 +114,7 @@ public class Game_Control : MonoBehaviour
             timer = 0;
             if(objectcount < maxCount)
             {
-                generateObject.CreateMeteor(placeGeneration.localPosition, parent);
+                generateObject.CreateMeteor(placeGeneration.position, parent);
                 objectcount++;
             }
             objectChangePlace.SetNewRandomPosition();

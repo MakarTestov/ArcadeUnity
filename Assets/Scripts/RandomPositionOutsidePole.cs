@@ -30,6 +30,11 @@ namespace Assets.Scripts
         /// </summary>
         private RectTransform rectpole;
 
+        /// <summary>
+        /// Transform объекта генерации
+        /// </summary>
+        private RectTransform rectGenerobject;
+
         #region Places
         /// <summary>
         /// Координаты начала левой части поля
@@ -67,6 +72,7 @@ namespace Assets.Scripts
         public void Start()
         {
             rectpole = pole.GetComponent<RectTransform>();
+            rectGenerobject = GetComponent<RectTransform>();
             SetPartHeightandWidth();
 
             SetPlaces();
@@ -92,10 +98,10 @@ namespace Assets.Scripts
             right = rect.rect.x + partWidth;
             up = rect.rect.y + partHeight;
             down = rect.rect.y - partHeight;*/
-            left = pole.transform.localPosition.x - partWidth;
-            right = pole.transform.localPosition.x + partWidth;
-            up = pole.transform.localPosition.y + partHeight;
-            down = pole.transform.localPosition.y - partHeight;
+            left = pole.transform.localPosition.x - partWidth - rectGenerobject.rect.width;
+            right = pole.transform.localPosition.x + partWidth + rectGenerobject.rect.width;
+            up = pole.transform.localPosition.y + partHeight + rectGenerobject.rect.height;
+            down = pole.transform.localPosition.y - partHeight - rectGenerobject.rect.height;
         }
 
         /// <summary>
